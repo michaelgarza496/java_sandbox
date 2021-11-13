@@ -1,8 +1,15 @@
 package com.michael;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,6 +21,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Tester {
 
@@ -1165,7 +1176,7 @@ public class Tester {
 //			System.out.println();
 //		}
 //	}
-	
+
 //	public static void main(String[] args) {
 //		List<String> employees = new ArrayList<String>();
 //		employees.add("Alex");
@@ -1187,24 +1198,235 @@ public class Tester {
 //			}
 //		}
 //	}
-	
-	public static void main(String args[]) {
-		Map<String, Integer> studentDetails = new HashMap<String, Integer>();
-		studentDetails.put("Max", 337);
-		studentDetails.put("Stocks", 480);
-		studentDetails.put("Malinda", 570);
-		studentDetails.put("Mathew", 640);
-		studentDetails.put("Max", 340);
-		if (studentDetails.replace("stocks", 480, 650)) {
-			studentDetails.remove("Max");
-		} else {
-			studentDetails.put("Sam", 490);
-		}
 
-		System.out.println(studentDetails);
+//	public static void main(String args[]) {
+//		Map<String, Integer> studentDetails = new HashMap<String, Integer>();
+//		studentDetails.put("Max", 337);
+//		studentDetails.put("Stocks", 480);
+//		studentDetails.put("Malinda", 570);
+//		studentDetails.put("Mathew", 640);
+//		studentDetails.put("Max", 340);
+//		if (studentDetails.replace("stocks", 480, 650)) {
+//			studentDetails.remove("Max");
+//		} else {
+//			studentDetails.put("Sam", 490);
+//		}
+//
+//		System.out.println(studentDetails);
+//	}
+//
+//	public static void main(String args[]) {
+//		SwapEmployee obj = new SwapEmployee();
+//		Integer[] empIdList = { 101, 102, 100, 104 };
+//		obj.swap(empIdList, 1, 2);
+//	}
+
+//	public static double sumList(List<? extends Number> list) {
+//		float sum = 1.0f;
+//		for (Number n : list)
+//			sum = sum + n.floatValue();
+//		return sum;
+//	}
+//
+//	public static void main(String args[]) {
+//		List<Float> ref = Arrays.asList(16.0f, 1.0f, 3.0f);
+//		System.out.println(sumList(ref));
+//	}
+//	
+//	
+//	public static void main(String args[]) {
+//		List<Product> list = new ArrayList<Product>();
+//		list.add(new Product("Shawl", 300.00));
+//		list.add(new Product("Linen", 255.00));
+//		list.add(new Product("Roger", 100.00));
+//		list.add(new Product("Tommy", 450.00));
+//		list.add(new Product("Tammy", 175.00));
+//		Collections.sort(list);
+//		
+//		for (Product product : list)
+//			System.out.print(product.productId + ":" + product.price + ", ");
+//	}
+
+//	public static void main(String[] args) throws IOException {
+//		FileOutputStream fos=new FileOutputStream("/home/michael/output.txt");
+//		String data = "Learning ";
+//		fos.write(data.getBytes());
+//		fos.close();
+//		fos = new FileOutputStream("/home/michael/output.txt");
+//		data = "Java is really fun!";
+//		fos.write(data.getBytes());
+//		fos.close();
+//	}
+//
+
+//	public static void main(String[] args) throws InterruptedException {
+//		Thread thread = new Thread();
+//		thread.setName("welcomeThread");    // Line 1
+//		thread.start();
+//		System.out.println("Welcome to ");
+//		thread.wait(2000);                  // Line 2
+//		System.out.println("Infosys");
+//	}
+
+//	public static void main(String[] args) {
+//		Running r = new Running ();
+//		Thread t = new Thread(r);
+//		t.start();
+//		System.out.print(t.getState() + " ");
+//		try{
+//			t.sleep(100);
+//			System.out.print(t.getState());
+//		}
+//		catch(InterruptedException e) {
+//		   e.printStackTrace();
+//        }
+//	}
+
+//	public static void main(String[] args) {
+//		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+//		for (int i = 0; i < 5; i++) {
+//			MyThread t1 = new MyThread();
+//			executor.execute(t1);
+//		}
+//		System.out.print("\nMaximum number of threads inside pool: " + executor.getMaximumPoolSize() + "\n");    // Line 2
+//		executor.shutdown();
+//	}
+
+//	public static void main(String[] args) {
+//		String[] values = { "9a4b x", "3a z", "a", "1a2b3c " };
+//		int counter = 0;
+//		for (String value : values) {
+//			if (value.matches("(\\d[a-z])+\\s\\w?")) {
+//				counter++;
+//			}
+//		}
+//		System.out.println(counter);
+//	}
+
+//	public static void main(String[] args) {
+//		String[] values = { "xy", "xay", "xaby", "xa" };
+//		for (String value : values) {
+//			if (value.matches("x.y")) {
+//				System.out.println(value);
+//			}
+//		}
+//	}
+
+//	public static void main(String... arg) {
+//		Pattern pattern = Pattern.compile("M+", 5);
+//		Matcher matcher = pattern.matcher("M Merit Match MM m mM");
+//		while (matcher.find())
+//			System.out.print(matcher.group() + " ");
+//	}
+
+//	public static void displayElements(List<? super Integer> li) {
+//		System.out.println(li); // line 4
+//	}
+//
+//	public static void main(String[] args) {
+//		List<Number> i1 = new ArrayList<Number>();
+//		i1.add(1009.9f); // line 1
+//		i1.add(200); // line 2
+//		i1.add(new Double(300)); // line 3
+//		displayElements(i1);
+//	}
+	
+	public static void main(String[] args) {
+		
+	}
+}
+
+class FruitsImpl implements Fruits {
+    public void taste() {
+         System.out.println("Taste is good...");
+   }
+}
+
+interface Fruits {
+    void taste();
+}
+
+class MyThread implements Runnable {
+
+	MyThread() {
+		System.out.print("New Thread is created."); // Line 1
 	}
 
-	
+	@Override
+	public void run() {
+		try {
+			System.out.print("Am from MyThread...");
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+}
+
+class Running implements Runnable {
+	public void run() {
+		// code of run method
+	}
+}
+
+class Employee {
+	String name;
+}
+
+class ContractEmployee extends Employee implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3994334986290628324L;
+	/**
+	 * 
+	 */
+
+	int salary;
+
+	ContractEmployee(int salary, String name) {
+		super.name = name;
+		this.salary = salary;
+	}
+
+	public String toString() {
+		return super.name + salary;
+	}
+}
+
+class Product implements Comparable<Product> {
+	String productId;
+	double price;
+
+	Product() {
+	}
+
+	Product(String n, double a) {
+		productId = n;
+		price = a;
+	}
+
+	public int compareTo(Product product) {
+		if (this.price == product.price)
+			return 0;
+		else if (this.price > product.price)
+			return 1;
+		else
+			return -1;
+	}
+
+}
+
+class SwapEmployee {
+	public <T> void swap(T[] a, int i, int j) {
+		T temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+		for (T t : a) {
+			System.out.print(t + "\t");
+		}
+
+	}
 }
 
 class Patient {
